@@ -69,7 +69,7 @@ public class HomePage {
 
         WebElement allVideoGamesCategory = allVideoGamesSection.findElement(this.allVideoGamesCategory);
         js.executeScript("arguments[0].scrollIntoView(true);", allVideoGamesCategory);
-        allVideoGamesCategory.click();
+        js.executeScript("arguments[0].click();", allVideoGamesCategory);
 
         return new VideoGamesPage(driver);
     }

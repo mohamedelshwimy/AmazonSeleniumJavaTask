@@ -12,7 +12,7 @@ import org.testng.annotations.BeforeMethod;
 public class BaseTests {
     private WebDriver driver;
     protected HomePage homePage;
-    private String browser = "chrome";
+    private String browser = "firfox";
 
     @BeforeClass
     public void setUp(){
@@ -30,10 +30,6 @@ public class BaseTests {
         }
         driver.manage().window().maximize();
         homePage = new HomePage(driver);
-    }
-
-    @BeforeMethod
-    public void goToHomePage(){
         driver.get("https://www.amazon.eg/?language=en_AE");
     }
 
