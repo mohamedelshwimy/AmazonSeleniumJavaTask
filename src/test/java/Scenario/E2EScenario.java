@@ -1,16 +1,16 @@
 package Scenario;
 
 import Base.BaseTests;
-import Pages.LoginPage;
-import Pages.VideoGamesFilteredResultsPage;
-import Pages.VideoGamesPage;
+import Pages.*;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 public class E2EScenario extends BaseTests {
-    LoginPage loginPage;
-    VideoGamesPage videoGamesPage;
-    VideoGamesFilteredResultsPage videoGamesFilteredResultsPage;
+    private static LoginPage loginPage;
+    private static VideoGamesPage videoGamesPage;
+    private static VideoGamesFreeShippingFiltered videoGamesFreeShippingFiltered;
+    private static VideoGamesNewFiltered videoGamesNewFiltered;
+    private static SortedVideoGamesPage sortedVideoGamesPage;
 
     /*
     @Test(priority = 1)
@@ -38,10 +38,42 @@ public class E2EScenario extends BaseTests {
     @Test(priority = 3,dependsOnMethods = {"navigateToVideoGames"})
     public void filterVideoGames() {
         SoftAssert softAssert = new SoftAssert();
-        videoGamesFilteredResultsPage = videoGamesPage.clickFreeShippingFilter();
-        softAssert.assertTrue(videoGamesFilteredResultsPage.getFreeShippingCheckBox(),"FreeShipping filter not checked");
+
+        videoGamesFreeShippingFiltered = videoGamesPage.clickFreeShippingFilter();
+
+        //Check that free shipping checkbox is checked using isSelected method
+        Boolean freeShippingCheck = videoGamesFreeShippingFiltered.getFreeShippingCheckBox();
+        softAssert.assertTrue(freeShippingCheck,"FreeShipping filter not checked");
+
         softAssert.assertAll();
     }
+
+    @Test(priority = 4,dependsOnMethods = {"filterVideoGames"})
+    public void filterWithNewCondition() {
+        SoftAssert softAssert = new SoftAssert();
+        videoGamesNewFiltered = videoGamesFreeShippingFiltered.selectNewConditionFilter();
+
+        //Check that clear is displayed after selecting New Condition filter
+        Boolean clearFilter = videoGamesNewFiltered.checkClearFilterIsDisplayed();
+
+        softAssert.assertTrue(clearFilter,"Clear Filters not displayed");
+        softAssert.assertAll();
+    }
+
+    // 5. open the sort menu then sort by price: high to low
+
+    @Test(priority = 5,dependsOnMethods = {"filterWithNewCondition"})
+    public void sortByPriceFromHighToLow() {
+        SoftAssert softAssert = new SoftAssert();
+        sortedVideoGamesPage = videoGamesNewFiltered.sortByPrice();
+
+        //Check that Price is sorted after from High to Low
+        String sortHighToLowText = sortedVideoGamesPage.sortHighToLowGetText();
+        softAssert.assertEquals(sortHighToLowText,"Price: High to Low","Wrong Sort");
+
+        softAssert.assertAll();
+    }
+
 
 
     }

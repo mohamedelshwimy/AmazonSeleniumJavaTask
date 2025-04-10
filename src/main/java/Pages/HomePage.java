@@ -27,10 +27,7 @@ public class HomePage {
     private By shopByCategoryDiv = By.xpath("//section[@aria-labelledby='Shop by Category']");
     private By shopByCategorySeeAll = By.xpath("//a[@aria-label='See All Categories']");
 
-    private By expandedCategoriesDiv = By.xpath("//ul[contains(@class,'hmenu-compress-section')]");
-    private By allCategoriesDiv = By.id("hmenu-content");
     private By videoGamesCategory = By.xpath("//a[contains(@data-menu-id,'16')]");
-
     private By allVideoGamesSection = By.xpath("//section[contains(.,'Video Games')]");
     private By allVideoGamesCategory = By.xpath("//a[@class='hmenu-item'][contains(.,'All Video Games')]");
 
@@ -76,21 +73,3 @@ public class HomePage {
 
 
 }
-
-
-
-/*
-//Locators
-private By languageDropDown = By.xpath("//button[contains(@class,'nav-flyout-button')]");
-private By englishLanguage = By.xpath("//a[1]");
-//div[@id='nav-flyout-icp']//a[1]
-//Methods
-public void chooseEnglishLanguage(){
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-    wait.until(ExpectedConditions.elementToBeClickable(languageDropDown));
-    WebElement navBar = driver.findElement(By.id("nav-tools"));
-    WebElement languagePopUpDev = driver.findElement(By.id("nav-flyout-icp"));
-    navBar.findElement(languageDropDown).click();
-    languagePopUpDev.findElement(englishLanguage).click();
-}
-*/
