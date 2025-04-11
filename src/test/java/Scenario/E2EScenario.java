@@ -11,6 +11,7 @@ public class E2EScenario extends BaseTests {
     private static VideoGamesFreeShippingFiltered videoGamesFreeShippingFiltered;
     private static VideoGamesNewFiltered videoGamesNewFiltered;
     private static SortedVideoGamesPage sortedVideoGamesPage;
+    private static CartPage cartPage;
 
     /*
     @Test(priority = 1)
@@ -75,13 +76,28 @@ public class E2EScenario extends BaseTests {
     }
 
     //6. add all products below that its cost below 15k EGP, if no product below 15k EGP move to next page
-
     @Test(priority = 6,dependsOnMethods = {"sortByPriceFromHighToLow"})
     public void selectAllProductsBelow15K() {
         SoftAssert softAssert = new SoftAssert();
-        sortedVideoGamesPage.AddAllListItemsBelow15KToArrayList();
+        //Not All Products have AddToCart btn
+        sortedVideoGamesPage.AddAllProductsBelow15KToCart();
+        softAssert.assertTrue(sortedVideoGamesPage.checkNumOfProductsAddedToCart(),"Incorrect NumOfProductsAddedToCart");
+
         softAssert.assertAll();
     }
+
+    //7. make sure that all products is already added to carts
+    @Test(priority = 7,dependsOnMethods = {"selectAllProductsBelow15K"})
+    public void navigateToCart() {
+        SoftAssert softAssert = new SoftAssert();
+        cartPage = sortedVideoGamesPage.goToCartPage();
+        softAssert.assertEquals(cartPage.numberOfItemsPresentInCart(),sortedVideoGamesPage.numOfProductsBelow15KAddedToCart(),"Check Items Present in Cart");
+        softAssert.assertEquals(cartPage.getSumCartPrice(), cartPage.getTotalCartPrice(),"Diff between Sum and Total in Cart Page");
+        softAssert.assertAll();
+    }
+
+    // 8. add address and choose cash as a payment method
+    // 9. make sure that the total amount of all items is correct with the shipping fees if exist
 
 
 }

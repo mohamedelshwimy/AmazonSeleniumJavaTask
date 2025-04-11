@@ -28,16 +28,10 @@ public class VideoGamesFreeShippingFiltered {
 
     public VideoGamesNewFiltered selectNewConditionFilter(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        JavascriptExecutor js = (JavascriptExecutor) driver;
 
         wait.until(ExpectedConditions.presenceOfElementLocated(newConditionFilter));
         WebElement newConditionFilter = driver.findElement(this.newConditionFilter);
-        js.executeScript("arguments[0].scrollIntoView(true);", newConditionFilter);
-        try {
-            newConditionFilter.click();
-        }catch (ElementClickInterceptedException e){
-            js.executeScript("arguments[0].click();", newConditionFilter);
-        }
+        newConditionFilter.click();
 
         return new VideoGamesNewFiltered(driver);
     }
