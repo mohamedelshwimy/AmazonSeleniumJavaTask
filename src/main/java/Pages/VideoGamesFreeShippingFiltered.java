@@ -1,9 +1,6 @@
 package Pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -33,12 +30,14 @@ public class VideoGamesFreeShippingFiltered {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         JavascriptExecutor js = (JavascriptExecutor) driver;
 
-
+        wait.until(ExpectedConditions.presenceOfElementLocated(newConditionFilter));
         WebElement newConditionFilter = driver.findElement(this.newConditionFilter);
         js.executeScript("arguments[0].scrollIntoView(true);", newConditionFilter);
-        wait.until(ExpectedConditions.elementToBeClickable(newConditionFilter));
-
-        newConditionFilter.click();
+        try {
+            newConditionFilter.click();
+        }catch (ElementClickInterceptedException e){
+            js.executeScript("arguments[0].click();", newConditionFilter);
+        }
 
         return new VideoGamesNewFiltered(driver);
     }

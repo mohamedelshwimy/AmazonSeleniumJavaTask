@@ -33,8 +33,7 @@ public class E2EScenario extends BaseTests {
         softAssert.assertEquals(videoGamesPage.getVideoGamesBanner(),"Video Games","Not Signed In Correctly");
         softAssert.assertAll();
     }
-//4. from the filter menu on the left side add filter “free shipping” & add the filter of condition “ new”
-
+ //4. from the filter menu on the left side add filter “free shipping” & add the filter of condition “ new”
     @Test(priority = 3,dependsOnMethods = {"navigateToVideoGames"})
     public void filterVideoGames() {
         SoftAssert softAssert = new SoftAssert();
@@ -51,16 +50,17 @@ public class E2EScenario extends BaseTests {
     @Test(priority = 4,dependsOnMethods = {"filterVideoGames"})
     public void filterWithNewCondition() {
         SoftAssert softAssert = new SoftAssert();
+
         videoGamesNewFiltered = videoGamesFreeShippingFiltered.selectNewConditionFilter();
 
         //Check that clear is displayed after selecting New Condition filter
         Boolean clearFilter = videoGamesNewFiltered.checkClearFilterIsDisplayed();
-
         softAssert.assertTrue(clearFilter,"Clear Filters not displayed");
+
         softAssert.assertAll();
     }
 
-    // 5. open the sort menu then sort by price: high to low
+    //5. open the sort menu then sort by price: high to low
 
     @Test(priority = 5,dependsOnMethods = {"filterWithNewCondition"})
     public void sortByPriceFromHighToLow() {
@@ -74,6 +74,14 @@ public class E2EScenario extends BaseTests {
         softAssert.assertAll();
     }
 
+    //6. add all products below that its cost below 15k EGP, if no product below 15k EGP move to next page
 
-
+    @Test(priority = 6,dependsOnMethods = {"sortByPriceFromHighToLow"})
+    public void selectAllProductsBelow15K() {
+        SoftAssert softAssert = new SoftAssert();
+        sortedVideoGamesPage.AddAllListItemsBelow15KToArrayList();
+        softAssert.assertAll();
     }
+
+
+}

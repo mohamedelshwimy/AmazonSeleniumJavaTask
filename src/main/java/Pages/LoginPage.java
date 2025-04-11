@@ -31,7 +31,7 @@ public class LoginPage {
         wait.until(ExpectedConditions.elementToBeClickable(continueBtn));
         driver.findElement(continueBtn).click();
 
-        wait.until(ExpectedConditions.elementToBeClickable(password));
+        wait.until(ExpectedConditions.presenceOfElementLocated(password));
         driver.findElement(password).sendKeys(tempPassword);
         driver.findElement(signInBtn).click();
     }

@@ -30,7 +30,7 @@ public class VideoGamesPage {
 
     public VideoGamesFreeShippingFiltered clickFreeShippingFilter(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.presenceOfElementLocated(this.categoriesDiv));
+        wait.until(ExpectedConditions.presenceOfElementLocated(categoriesDiv));
 
         WebElement categoriesDiv = driver.findElement(this.categoriesDiv);
         WebElement freeShippingSpan = categoriesDiv.findElement(this.freeShippingSpan);

@@ -7,7 +7,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import javax.management.InvalidAttributeValueException;
 import java.time.Duration;
 
 public class HomePage {
@@ -61,8 +60,8 @@ public class HomePage {
         js.executeScript("arguments[0].scrollIntoView(true);", videoGamesCategory);
         videoGamesCategory.click();
 
-        WebElement allVideoGamesSection = driver.findElement(this.allVideoGamesSection);
         wait.until(ExpectedConditions.presenceOfElementLocated(this.allVideoGamesSection));
+        WebElement allVideoGamesSection = driver.findElement(this.allVideoGamesSection);
 
         WebElement allVideoGamesCategory = allVideoGamesSection.findElement(this.allVideoGamesCategory);
         js.executeScript("arguments[0].scrollIntoView(true);", allVideoGamesCategory);
