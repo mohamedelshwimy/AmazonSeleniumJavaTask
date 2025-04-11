@@ -24,7 +24,7 @@ public class LoginPage {
     private By password = By.id("ap_password");
     private By signInBtn = By.id("signInSubmit");
     //Methods
-    public void signIn(){
+    public HomePage signIn(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         driver.findElement(email).sendKeys(tempEmail);
@@ -34,5 +34,6 @@ public class LoginPage {
         wait.until(ExpectedConditions.presenceOfElementLocated(password));
         driver.findElement(password).sendKeys(tempPassword);
         driver.findElement(signInBtn).click();
+        return new HomePage(driver);
     }
 }

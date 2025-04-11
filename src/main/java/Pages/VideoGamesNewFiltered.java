@@ -26,7 +26,7 @@ public class VideoGamesNewFiltered {
         try {
             wait.until(ExpectedConditions.presenceOfElementLocated(clearConditionFilters));
             WebElement clearConditionFilterElement = driver.findElement(clearConditionFilters);
-            js.executeScript("arguments[0].scrollIntoView(true);", clearConditionFilterElement);
+            js.executeScript("arguments[0].scrollIntoView({block: 'center'});", clearConditionFilterElement);
             wait.until(ExpectedConditions.elementToBeClickable(clearConditionFilterElement));
 
             Boolean clearConditionFilter = clearConditionFilterElement.isDisplayed();

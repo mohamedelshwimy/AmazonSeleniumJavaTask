@@ -38,7 +38,7 @@ public class SortedVideoGamesPage {
     }
 
     public void AddAllProductsBelow15KToCart(){
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         while (continuePages) {
             System.out.println("While Loop Count -> " + counter);
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
@@ -71,15 +71,15 @@ public class SortedVideoGamesPage {
                     if (listItemPriceValue < 15000) {
                         continuePages = false; //Don't go to next page
 
-                        js.executeScript("arguments[0].scrollIntoView(true);",driver.findElement(productDiv));
+                        js.executeScript("arguments[0].scrollIntoView({block: 'center'});",driver.findElement(productDiv));
                         listItemPricesBelow15K.add(listItemPriceValue);
                         System.out.println("listItemPricesBelow15K -> " + listItemPricesBelow15K + '\n');
 
                         if(driver.findElement(addToCartBtn).isDisplayed()){
+                            wait.until(ExpectedConditions.elementToBeClickable(addToCartBtn));
                             productsBelow15KAddedToCart.add(listItemPriceValue);
+                            driver.findElement(addToCartBtn).click();
                         }
-
-                        driver.findElement(addToCartBtn).click();
                     }else{
                         if (continuePages) {
                             wait.until(ExpectedConditions.presenceOfElementLocated(moveToNextPage));
@@ -122,7 +122,15 @@ public class SortedVideoGamesPage {
     }
 
     public CartPage goToCartPage(){
-        driver.findElement(cartCount).click();
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(cartCount));
+            js.executeScript("arguments[0].scrollIntoView({block: 'center'});", driver.findElement(cartCount));
+            driver.findElement(cartCount).click();
+        }catch (ElementClickInterceptedException e){
+            js.executeScript("arguments[0].click();",  driver.findElement(cartCount));
+        }
         return new CartPage(driver);
     }
 
