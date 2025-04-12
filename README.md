@@ -1,5 +1,5 @@
 
-# Foodics Amazon Task
+# AmazonSeleniumJavaTask
 
 ## 📌 Overview
 
@@ -34,8 +34,8 @@ This project automates the following workflow on [Amazon.eg](https://www.amazon.
 1. **Clone the Repository**:
 
    ```bash
-   git clone https://github.com/mohamedelshwimy/Foodics_Amazon_Task.git
-   cd Foodics_Amazon_Task
+   git clone https://github.com/mohamedelshwimy/AmazonSeleniumJavaTask.git
+   cd AmazonSeleniumJavaTask
    ```
 
 2. **Build the Project**:
@@ -71,11 +71,13 @@ Foodics_Amazon_Task/
 │           └── Pages
 ├── src/
 │   └── test/
-│       ├── Base/
-│       │   └── BaseTests
-│       └── Scenario/
-│           └── E2EScenario
-├── Email.txt
+│        └── java/
+│             ├── Address/
+│             │   └── Address.xlsx
+│             ├── Base/
+│             │   └── BaseTests
+│             └── Scenario/
+│                 └── E2EScenario
 ├── pom.xml
 └── README.md
 ```
