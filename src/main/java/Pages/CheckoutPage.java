@@ -21,7 +21,7 @@ public class CheckoutPage {
     private By shippingPrice = By.xpath("//div[@id='subtotals-marketplace-table']//tr[2]//td[contains(@class,'a-text-right')]");
     private By itemsPrice = By.xpath("//div[@id='subtotals-marketplace-table']//tr[1]//td[contains(@class,'a-text-right')]");
     private By orderTotalPrice = By.xpath("//div[@id='subtotals-marketplace-table']//tr[4]//td[contains(@class,' a-text-right')]");
-    private By cashOnDeliveryRadio = By.cssSelector("//label[contains(.,'Cash on Delivery (COD)')]//input");
+    private By cashOnDeliveryRadio = By.xpath("//label[contains(.,'Cash on Delivery (COD)')]//input");
     private By useThisPaymentMethod = By.xpath("//input[@name='ppw-widgetEvent:SetPaymentPlanSelectContinueEvent']");
 
     //Methods
