@@ -17,7 +17,7 @@ This project automates the following workflow on [Amazon.eg](https://www.amazon.
 8. **Add New Address**: Fill new address form using @DataProvider
 9. **Check Payment Method**: Choose payment method
 
-**Disclaimer:** The email and password provided are created for the purpose of this project only
+**Disclaimer:** The email and password provided in LoginPage are created for the purpose of this project only, You can change these credentials and it will work fine
 
 ## 🛠️ Technologies Used
 
