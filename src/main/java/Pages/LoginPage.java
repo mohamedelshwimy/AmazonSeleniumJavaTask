@@ -11,7 +11,6 @@ import java.time.Duration;
 public class LoginPage {
     private WebDriver driver;
     private String tempEmail = "foodics.testing.task.me@gmail.com";
-    private String tempPhone = "01143954154";
     private String tempPassword = "Mm@12345678";
 
     public LoginPage (WebDriver driver){
