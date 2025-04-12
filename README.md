@@ -1,5 +1,5 @@
 
-# Foodics Amazon Task
+# AmazonSeleniumJavaTask
 
 ## 📌 Overview
 
