@@ -46,7 +46,7 @@ public class AddressesPage {
     public String getRemovedAddressMsg() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.presenceOfElementLocated(addressDeleted));
-        System.out.println("After delete address" + driver.findElement(addressDeleted).getText());
+        System.out.println("After delete address: " + driver.findElement(addressDeleted).getText());
         return driver.findElement(addressDeleted).getText();
     }
 

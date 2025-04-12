@@ -157,9 +157,10 @@ public class E2EScenario extends BaseTests {
         softAssert.assertEquals(totalPriceWithShipping, checkoutPage.getOrderTotalPrice(),"Prices Incorrect");
         if(totalPriceOfAllProducts > 25000){
             //Cash On Delivery is not available if total open order value exceeds 25000 EGP.
-            softAssert.assertTrue(checkoutPage.checkCashOnDeliveryRadioEnabled(),"");
+            softAssert.assertFalse(checkoutPage.checkCashOnDeliveryRadioEnabled(),"");
         }else{
             //Choose COD payment method
+            softAssert.assertTrue(checkoutPage.checkCashOnDeliveryRadioEnabled(),"");
             checkoutPage.chooseCashOnDelivery();
         }
         softAssert.assertAll();

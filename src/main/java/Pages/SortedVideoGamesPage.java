@@ -76,6 +76,7 @@ public class SortedVideoGamesPage {
                         System.out.println("listItemPricesBelow15K -> " + listItemPricesBelow15K + '\n');
 
                         if(driver.findElement(addToCartBtn).isDisplayed()){
+                            js.executeScript("arguments[0].scrollIntoView({block: 'center'});",driver.findElement(addToCartBtn));
                             wait.until(ExpectedConditions.elementToBeClickable(addToCartBtn));
                             productsBelow15KAddedToCart.add(listItemPriceValue);
                             driver.findElement(addToCartBtn).click();
