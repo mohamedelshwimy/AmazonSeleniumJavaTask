@@ -58,10 +58,6 @@ public class CartPage {
         return new SecureCheckOutPage(driver);
     }
 
-    public CheckoutPage goToCheckoutPage() {
-        driver.findElement(proceedToBuyBtn).click();
-        return new CheckoutPage(driver);
-    }
     public void emptyCart() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));

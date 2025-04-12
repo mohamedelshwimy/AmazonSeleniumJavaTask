@@ -47,8 +47,9 @@ public class E2EScenario extends BaseTests {
     public void removeExistingAddress() {
         SoftAssert softAssert = new SoftAssert();
         addressesPage = homePage.goToAddressesPage();
-        if (!addressesPage.checkIfExistingAddress()) {
+        if (addressesPage.checkIfExistingAddress()) {
             addressesPage.removeExistingAddress();
+            softAssert.assertEquals(addressesPage.getRemovedAddressMsg(),"Address deleted","Address not removed");
             addressesPage.clickAmazonLogo();
         }else{
             System.out.println("No Addresses Found");
@@ -124,6 +125,7 @@ public class E2EScenario extends BaseTests {
     public void checkProductsInCart() {
         SoftAssert softAssert = new SoftAssert();
         cartPage = sortedVideoGamesPage.goToCartPage();
+
         softAssert.assertEquals(cartPage.numberOfItemsPresentInCart(), sortedVideoGamesPage.numOfProductsBelow15KAddedToCart(), "Check Items Present in Cart");
         totalPriceOfAllProducts = cartPage.getSumCartPrice();
         System.out.println("totalPriceOfAllProducts -> "+totalPriceOfAllProducts);
@@ -139,7 +141,6 @@ public class E2EScenario extends BaseTests {
                                              String phoneNumber,String streetName,String buildingNum,
                                              String city,String district, String addressType) {
 
-
         secureCheckOutPage = cartPage.goToSecureCheckOutPage();
         secureCheckOutPage.addNewAddress(country,fullName, countryCode,phoneNumber,streetName,buildingNum,city,district,addressType);
 
@@ -150,12 +151,17 @@ public class E2EScenario extends BaseTests {
     //choose payment method
     @Test(priority = 11, dependsOnMethods = {"navigateToSecureCheckOutPage"})
     public void checkPaymentMethod() {
-
+        SoftAssert softAssert = new SoftAssert();
         checkoutPage = secureCheckOutPage.goToCheckOutPage();
+        int totalPriceWithShipping = checkoutPage.getShippingFees() + checkoutPage.getItemsPrice();
+        softAssert.assertEquals(totalPriceWithShipping, checkoutPage.getOrderTotalPrice(),"Prices Incorrect");
         if(totalPriceOfAllProducts > 25000){
-            //Choose payment method other than COD
+            //Cash On Delivery is not available if total open order value exceeds 25000 EGP.
+            softAssert.assertTrue(checkoutPage.checkCashOnDeliveryRadioEnabled(),"");
         }else{
             //Choose COD payment method
+            checkoutPage.chooseCashOnDelivery();
         }
+        softAssert.assertAll();
     }
 }

@@ -6,6 +6,7 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -29,6 +30,7 @@ public class BaseTests {
 
     @BeforeClass
     public void setUp() {
+
         String browser = "chrome";
         switch (browser.toLowerCase()) {
             case "firefox":
@@ -44,10 +46,6 @@ public class BaseTests {
                 // Optional: Disable infobars and extensions
                 options.addArguments("--disable-infobars");
                 options.addArguments("--disable-extensions");
-                options.addArguments("--disable-save-password-bubble");
-                options.addArguments("--disable-password-manager");
-                options.addArguments("--disable-features=PasswordManager");
-
                 driver = new ChromeDriver(options);
                 break;
         }

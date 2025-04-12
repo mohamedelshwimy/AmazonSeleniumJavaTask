@@ -36,6 +36,7 @@ public class SecureCheckOutPage {
     private By resAddressTypeRadioBtn = By.cssSelector("input#address-ui-widgets-addr-details-res-radio-input"); // res for residential - com for commercial
     private By comAddressTypeRadioBtn = By.cssSelector("input#address-ui-widgets-addr-details-com-radio-input");
     private By countinueBtn = By.xpath("//span[@id='checkout-primary-continue-button-id']//input");
+    private By useThisAddressBtn = By.xpath("//input[@data-csa-c-slot-id='address-ui-widgets-continue-address-btn-bottom']");
 
     //Methods
     public boolean checkIfAddressAlreadyExists() {
@@ -86,11 +87,12 @@ public class SecureCheckOutPage {
         enterCity(city);
         enterDistrict(district);
         setAddressType(addressType);
-
-
     }
+
     public CheckoutPage goToCheckOutPage() {
-        driver.findElement(countinueBtn).click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(useThisAddressBtn));
+        driver.findElement(useThisAddressBtn).click();
         return new CheckoutPage(driver);
     }
 
