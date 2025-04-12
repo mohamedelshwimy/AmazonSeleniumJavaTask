@@ -13,6 +13,11 @@ This project automates the following workflow on [Amazon.eg](https://www.amazon.
 4. **Sort Products** by price: High to Low.
 5. **Add Products** priced below 15,000 EGP to the cart.
 6. **Iterate Pages**: If no products meet the price criteria on the current page, proceed to the next page.
+7. **Check Cart**: make sure that all products is already added to carts
+8. **Add New Address**: Fill new address form using @DataProvider
+9. **Check Payment Method**: Choose payment method
+
+**Disclaimer:** The email and password provided are created for the purpose of this project only
 
 ## 🛠️ Technologies Used
 
@@ -60,6 +65,8 @@ The automation script performs the following validations:
 - **Sorting Confirmation**: Checks that products are sorted from high to low price.
 - **Product Addition**: Adds all products priced below 15,000 EGP to the cart.
 - **Pagination Handling**: Moves to the next page if no products meet the price criteria on the current page.
+- **Handling Addresses**: Add New address and Remove Address if exists
+- **Handling Products in Cart**: Handle Cart to be Emptied before adding items to it
 
 ## 📁 Project Structure
 
