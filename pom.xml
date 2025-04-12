@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.foodics.amazon.task</groupId>
-    <artifactId>Foodics_Amazon_Task</artifactId>
+    <artifactId>AmazonSeleniumJavaTask</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
